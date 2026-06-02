@@ -32,6 +32,25 @@ its last pull. To avoid clobbering work done elsewhere:
 
 ## Recent changes
 
+- **2026-06-02** — Cards refreshed and then Card 3 swapped mid-session:
+  - First pass: HMRC-NEWS-6565 (UK China quota 058949 critical, welded
+    pipes Ch. 73), FR-2026-10873 (FDA draft guidance on streamlined
+    nonclinical safety for oncology biologics/conjugates, docket
+    FDA-2026-D-2839, comments to 31 Jul), and the EU LegTrain pipeline
+    file on steel overcapacity. Long-form briefing pack written to
+    `~/Downloads/gubernis-areas-of-focus-2026-06-02.md` for the
+    copywriter.
+  - Same-day swap of Card 3: replaced the LegTrain pipeline framing with
+    a fresh card on the **EU steel safeguard replacement** —
+    `EU-STEEL-SAFEGUARD-REPLACEMENT-2026`. Parliament adopted the
+    regulation in plenary on 19 May 2026 (606–16–39), so the earlier
+    *"is 1 July application confirmed?"* ambiguity is closed. The new
+    card surfaces the three substantive questions that remain open in
+    the 28-day window to entry into force: country quota allocations
+    (still being negotiated for WTO compatibility), the Commission's
+    implementing rules on *melt and pour country* traceability evidence
+    (due 31 August — 62-day gap between substantive rule and evidence
+    framework), and product-scope drift from 28 to 30 categories.
 - **2026-05-31** — Renamed the homepage `#this-week` section heading from
   *"What changed this week"* to *"Areas of focus this period"* (commit
   `2d8d070`). The weekly framing was an implicit cadence promise the

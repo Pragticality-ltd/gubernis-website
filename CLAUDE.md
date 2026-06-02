@@ -124,6 +124,22 @@ Multi-page expansion (`/about/`, `/pricing/`, `/how-it-works/`) is deferred. Anc
   Formspree endpoint with either a paid Formspree plan or a tiny PHP
   mailer hosted alongside the static files on IONOS.
 
+## Auth, payments, privacy — coordination with the Mola engine repo
+
+Three future changes to this site are gated on engine-side work, with
+specs that live in the Mola repo at `hs-mvp/docs/gubernis/`. Do not
+freelance any of these — read the spec, surface a plan, then wire.
+
+| When this site changes | The spec lives at |
+|---|---|
+| `#sign-up` form becomes Clerk magic-link redirect; pricing-page CTAs become Stripe Checkout URLs | `hs-mvp/docs/gubernis/gubernis-clerk-stripe-integration.md` |
+| `/privacy/` page revised against the substantive data policy | `hs-mvp/docs/gubernis/gubernis-retention-data-policy.md` |
+| New `/files/{engine_id}` route serving (architecture decision open — subdomain split is the recommended default) | `hs-mvp/docs/gubernis/gubernis-passage-tracking-calendar.md` |
+
+`gubernis-tier-transition-clarification.md` in the same folder **governs
+precedence** where any of the above specs appear to disagree. The V1
+spec set index is at `hs-mvp/docs/gubernis/00_README.md`.
+
 ## Open decisions (carried forward)
 
 - Final tone selection (currently the "Watch House" / Tone C from v1 of the brand direction)

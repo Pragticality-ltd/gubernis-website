@@ -32,6 +32,20 @@ its last pull. To avoid clobbering work done elsewhere:
 
 ## Recent changes
 
+- **2026-06-02** — Gubernis V1 spec set landed in the Mola engine repo
+  at `hs-mvp/docs/gubernis/` (seven docs + index README). Spine doc is
+  `gubernis-clerk-stripe-integration.md` (data model, Clerk auth, Stripe
+  webhooks); read order and v1/Phase 2 carve-outs in `00_README.md`.
+  `gubernis-tier-transition-clarification.md` governs precedence where
+  the others disagree (key rule: free-tier preferences are stored but
+  ignored at dispatch time). Cross-references added to this repo's
+  `CLAUDE.md` under "Auth, payments, privacy — coordination with the
+  Mola engine repo": pricing-page CTAs → Stripe Checkout, `#sign-up` →
+  Clerk magic link, `/privacy/` revision against the substantive data
+  policy, and the open architecture question on `/files/{engine_id}`
+  route serving (subdomain split via the new self-hosted server is the
+  recommended default). No code on this site changes yet — all the
+  above is deferred until the engine work lands.
 - **2026-06-02** — Cards refreshed and then Card 3 swapped mid-session:
   - First pass: HMRC-NEWS-6565 (UK China quota 058949 critical, welded
     pipes Ch. 73), FR-2026-10873 (FDA draft guidance on streamlined

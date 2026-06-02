@@ -32,20 +32,35 @@ its last pull. To avoid clobbering work done elsewhere:
 
 ## Recent changes
 
-- **2026-06-02** — Gubernis V1 spec set landed in the Mola engine repo
-  at `hs-mvp/docs/gubernis/` (seven docs + index README). Spine doc is
-  `gubernis-clerk-stripe-integration.md` (data model, Clerk auth, Stripe
-  webhooks); read order and v1/Phase 2 carve-outs in `00_README.md`.
+- **2026-06-02** — Gubernis MVP-scope specs landed in the Mola engine
+  repo at `hs-mvp/docs/gubernis/` (seven docs + index README). Spine
+  doc is `gubernis-clerk-stripe-integration.md` (data model, Clerk auth,
+  Stripe webhooks); read order and Phase 2 carve-outs in `00_README.md`.
   `gubernis-tier-transition-clarification.md` governs precedence where
   the others disagree (key rule: free-tier preferences are stored but
-  ignored at dispatch time). Cross-references added to this repo's
+  ignored at dispatch time). The `/files/{engine_id}` architecture
+  question is now resolved — dynamic Gubernis surfaces live at
+  `app.gubernis.com`; apex stays static. Captured as `ADR 003` in
+  `hs-mvp/docs/architecture_decisions/003_app_subdomain_for_dynamic_surfaces.md`
+  with the Gubernis-wide consequences (config page, archive, Watchlist,
+  Ask Gubernis all on `app.`). Cross-references added to this repo's
   `CLAUDE.md` under "Auth, payments, privacy — coordination with the
-  Mola engine repo": pricing-page CTAs → Stripe Checkout, `#sign-up` →
-  Clerk magic link, `/privacy/` revision against the substantive data
-  policy, and the open architecture question on `/files/{engine_id}`
-  route serving (subdomain split via the new self-hosted server is the
-  recommended default). No code on this site changes yet — all the
-  above is deferred until the engine work lands.
+  Mola engine repo": pricing-page CTAs → Stripe Checkout via `app.`,
+  `#sign-up` → Clerk magic link, `/privacy/` revision against the
+  substantive data policy, and the `/files/{engine_id}` route resolution.
+  No code on this site changes yet — all the above is deferred until
+  the engine work lands.
+- **2026-06-02** — Editorial discipline note from today's session: the
+  steel-card refresh demonstrated that engine-surfaced regulatory items
+  need a sense-check against current state-of-play before publishing as
+  lighthouse content. The first pass framed *"is 1 July application
+  confirmed?"* as an open ambiguity, sourced from a Legislative-Train /
+  Council press-release divergence; Parliament had already adopted in
+  plenary on 19 May (606–16–39), closing the ambiguity. The fix is
+  editorial (sense-check), not architectural — but every dispatch and
+  lighthouse piece going forward inherits this discipline. Worth
+  watching for in dispatch review window (Friday 06:00–08:00 UK, per
+  `dispatch-template-v1.md` §9).
 - **2026-06-02** — Cards refreshed and then Card 3 swapped mid-session:
   - First pass: HMRC-NEWS-6565 (UK China quota 058949 critical, welded
     pipes Ch. 73), FR-2026-10873 (FDA draft guidance on streamlined

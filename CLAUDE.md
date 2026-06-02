@@ -134,7 +134,7 @@ freelance any of these — read the spec, surface a plan, then wire.
 |---|---|
 | `#sign-up` form becomes Clerk magic-link redirect; pricing-page CTAs become Stripe Checkout URLs | `hs-mvp/docs/gubernis/gubernis-clerk-stripe-integration.md` |
 | `/privacy/` page revised against the substantive data policy | `hs-mvp/docs/gubernis/gubernis-retention-data-policy.md` |
-| New `/files/{engine_id}` route serving (architecture decision open — subdomain split is the recommended default) | `hs-mvp/docs/gubernis/gubernis-passage-tracking-calendar.md` |
+| `/files/{engine_id}` engine-detail pages served from `app.gubernis.com` (per ADR 003) — apex stays static | `hs-mvp/docs/gubernis/gubernis-passage-tracking-calendar.md` + `hs-mvp/docs/architecture_decisions/003_app_subdomain_for_dynamic_surfaces.md` |
 
 `gubernis-tier-transition-clarification.md` in the same folder **governs
 precedence** where any of the above specs appear to disagree. The V1

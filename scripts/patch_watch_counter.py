@@ -2,8 +2,9 @@
 
 Run during the GitHub Actions deploy workflow, after the index.html has
 been copied into dist/ but before lftp uploads it to IONOS. Fetches
-the public /gubernis/watch-counter JSON from the Railway-hosted FastAPI
-app and substitutes the ledger values in the staged HTML.
+the public /gubernis/watch-counter JSON from the Mola engine
+(IONOS VPS, app.gnomon.info) and substitutes the ledger values in the
+staged HTML.
 
 Fail-soft posture: if the endpoint is unreachable, returns non-JSON,
 or any field is missing, this script prints a warning and exits 0
@@ -12,7 +13,7 @@ A stale-but-deployed site is better than a failed deploy.
 
 Usage:
     python3 scripts/patch_watch_counter.py \\
-        --endpoint https://pragticality-production.up.railway.app/gubernis/watch-counter \\
+        --endpoint https://app.gnomon.info/gubernis/watch-counter \\
         --html dist/index.html
 """
 

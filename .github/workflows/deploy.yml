@@ -54,12 +54,13 @@ jobs:
 
       - name: Patch Watch counter with live engine numbers
         # Calls the public /gubernis/watch-counter JSON endpoint on the
-        # Railway-hosted FastAPI app and substitutes the ledger values
-        # into dist/index.html. Fail-soft — if the endpoint is unreachable
-        # the deploy proceeds with whatever numbers are baked into the repo.
+        # Mola engine (IONOS VPS, app.gnomon.info) and substitutes the ledger
+        # values into dist/index.html. Fail-soft — if the endpoint is
+        # unreachable the deploy proceeds with whatever numbers are baked in.
+        # (Migrated off Railway 2026-06-03.)
         run: |
           python3 scripts/patch_watch_counter.py \
-            --endpoint https://pragticality-production.up.railway.app/gubernis/watch-counter \
+            --endpoint https://app.gnomon.info/gubernis/watch-counter \
             --html dist/index.html
 
       - name: Install lftp

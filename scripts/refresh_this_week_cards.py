@@ -29,7 +29,7 @@ from pathlib import Path
 
 
 DEFAULT_ENDPOINT = (
-    "https://pragticality-production.up.railway.app/gubernis/recent-changes"
+    "https://app.gnomon.info/gubernis/recent-changes"
 )
 
 # Pretty-print map from raw source_id to short jurisdiction-and-issuer label.

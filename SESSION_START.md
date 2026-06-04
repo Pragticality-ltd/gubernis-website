@@ -32,6 +32,21 @@ its last pull. To avoid clobbering work done elsewhere:
 
 ## Recent changes
 
+- **2026-06-05** — Messaging + samples refresh. **Hero** now carries the
+  hours-back/exposure promise as a kicker under the H1 ("The hours back. The
+  risk in front of you."); **pricing** leads with "Your inbox, triaged by
+  exposure." and folds the "stop reading everything" line + the payback framing
+  ("one avoided misclassification or missed control change pays for the year")
+  into the subhead. New CSS `.hero-kicker` / `.pricing-kicker` (Source Serif /
+  ink / oxblood, mobile-scaled). "Surfaces change. You decide." kept as the H1.
+  The **`/samples/`** page is reframed as a deliberately-lagged **archive
+  sample** — "Week ending 23 May / Dispatch No. 23" → "From a recent week /
+  archive sample", plus a lag note ("subscribers receive the current week's
+  watch — not this one") — so current-week intelligence stays behind the
+  paywall. Touches: `index.html`, `styles.css`, `samples/index.html`. Deploy:
+  push to `main` → auto-deploys to IONOS. (Companion: conservative ROI/payback
+  models for Gubernis + Gnomon live in the `Pragticality` working folder for sales.)
+
 - **2026-06-02** — Gubernis MVP-scope specs landed in the Mola engine
   repo at `hs-mvp/docs/gubernis/` (seven docs + index README). Spine
   doc is `gubernis-clerk-stripe-integration.md` (data model, Clerk auth,

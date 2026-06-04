@@ -142,6 +142,16 @@ a { color: var(--oxblood); text-decoration: none; }
   margin-left: auto;
   margin-right: auto;
 }
+.hero-kicker {
+  font-family: 'Source Serif 4', serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: -2px auto 24px;
+  max-width: 620px;
+}
 .hero .cta-row {
   display: flex;
   gap: 14px;
@@ -500,6 +510,15 @@ a { color: var(--oxblood); text-decoration: none; }
 .pricing-section .section-head {
   text-align: center;
   margin-bottom: 56px;
+}
+.pricing-section .pricing-kicker {
+  font-family: 'Source Serif 4', serif;
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--oxblood);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
 }
 .pricing-section h2 {
   font-family: 'Source Serif 4', serif;
@@ -875,6 +894,8 @@ a { color: var(--oxblood); text-decoration: none; }
 
   .hero { padding: 48px 0 32px; }
   .hero h1 { font-size: 42px; }
+  .hero-kicker { font-size: 19px; }
+  .pricing-section .pricing-kicker { font-size: 18px; }
   .hero .lead { font-size: 18px; }
   .hero .cta-row { flex-direction: column; align-items: center; }
 

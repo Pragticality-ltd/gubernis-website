@@ -167,33 +167,29 @@ search engines verified.
 
 **Follow-ups worth doing when you pick this up:**
 
-1. **Automate "Areas of focus this period" cards (goal, not built).** Watch-counter
+1. **Automate "Areas of focus this period" cards — designed, queued (2026-06-12).** Watch-counter
    numbers are already auto-patched at deploy from the live engine.
-   Cards are not — they're still editorial via the interactive picker
-   in `scripts/refresh_this_week_cards.py`. The goal is to **automate
-   card selection with firm rules** so the homepage doesn't go stale
-   between manual refreshes. Open design questions to settle before
-   building:
-   - **Selection ruleset.** What counts as "newsworthy this week"?
-     Combination of: ambiguity-flagged > substantive > other; jurisdiction
-     balance (don't show three EU items if a US or UK alternative is
-     comparable); topic spread (don't show three sanctions stories);
-     freshness (last N days, configurable); de-dupe against identities
-     already shown in the previous N rotations.
-   - **Summary generation.** Hard problem — `feedback_dispatch_
-     traceability.md` forbids fabricated specifics. Options: (a) use
-     the engine's own structured fields (issuing agency, severity,
-     ambiguity reason, affected HS chapters where available) to build
-     templated summaries that cite the source; (b) LLM-draft against a
-     constrained prompt that's only allowed to paraphrase the title +
-     structured fields, never invent. Either way, a "no fabrication"
-     contract is the load-bearing constraint.
-   - **Human-in-the-loop or not.** Cron + auto-commit? Cron + open a
-     PR for approval? Daily auto-commit with weekly human override?
-     The dispatch-traceability rule probably argues for at least a
-     review checkpoint before the page changes.
-   - **Cadence.** Daily refresh? Weekly? Triggered by ambiguity-flag
-     volume?
+   Cards are not yet — but the design landed: an **Areas of Focus
+   page** in the `/app` operator console (fifth tab, role-gated to
+   staff+). Operator picks 3 from engine candidates, inline-edits the
+   drafter's summaries, submit → `POST /gubernis/operator/cardsets/approve`
+   → existing publish-on-approval mechanism (P0, 2026-06-03) takes
+   over. The Wed 07:00 UTC approval email keeps the one-tap mobile
+   approve path; the new page owns the *refine before publish* path.
+
+   **Spec:** `hs-mvp/docs/gubernis/gubernis-areas-of-focus-page-spec.md`
+   (full design — endpoints, traceability guard, autosave + conflict
+   handling, Mode B field set, acceptance criteria).
+
+   **Preconditions** (must land first, in order):
+   1. Clerk production migration — Sunday 2026-06-14 target
+   2. Clerk-on-`/app` + roles model — next session after
+   3. Areas of Focus page itself — ~4h
+
+   **Until then:** keep using `scripts/refresh_this_week_cards.py`
+   weekly (see "Common edits → Refreshing the Areas of focus this
+   period cards" below), or tap the `[✓ Approve as-is]` button in the
+   Wed approval email when the engine draft is good enough as-is.
 
 2. **Manual cards refresh in the meantime.** Until item 1 lands, run
    the picker weekly during the marketing push:

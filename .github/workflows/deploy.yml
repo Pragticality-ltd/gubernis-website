@@ -63,6 +63,19 @@ jobs:
             --endpoint https://app.gnomon.info/gubernis/watch-counter \
             --html dist/index.html
 
+      - name: Patch featured cards from the latest approved cardset
+        # Calls /gubernis/featured-cards on the Mola engine and substitutes
+        # the approved cardset HTML between the <!-- featured-cards: start -->
+        # / <!-- featured-cards: end --> markers in dist/index.html. Same
+        # fail-soft posture as the Watch-counter step — endpoint unreachable,
+        # no approved cardset, or markers missing → leave existing cards in
+        # place and proceed. Closes the publish-on-approval loop (P0, engine
+        # side shipped 2026-06-03; deploy-side wiring 2026-06-12).
+        run: |
+          python3 scripts/patch_featured_cards.py \
+            --endpoint https://app.gnomon.info/gubernis/featured-cards \
+            --html dist/index.html
+
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 

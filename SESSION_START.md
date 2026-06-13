@@ -167,34 +167,27 @@ search engines verified.
 
 **Follow-ups worth doing when you pick this up:**
 
-1. **Automate "Areas of focus this period" cards — v1 LIVE 2026-06-13.**
-   Watch-counter numbers were already auto-patched at deploy; cards
-   are now too, via the **Areas of Focus** page in the `/app` operator
-   console at `https://app.gnomon.info/app` (fifth tab, behind Basic
-   auth until Clerk-on-/app lands). Operator picks 3 from engine
-   candidates, edits summaries inline (autosave), submits →
-   `POST /gubernis/operator/cardsets/approve` writes the new approved
-   cardset → `GET /gubernis/featured-cards` serves it immediately.
-   Mode B (sales demo) on the same page renders a prospect's filtered
-   watch read-only against production. **Spec:**
-   `hs-mvp/docs/gubernis/gubernis-areas-of-focus-page-spec.md`. Build
-   commit: hs-mvp `7585b0f`.
-
-   **Next step on this side** (gubernis-website): re-attempt the
-   `scripts/patch_featured_cards.py` deploy-side wiring (reverted
-   2026-06-12) once Steve runs Mode A end-to-end at least once — that
-   first submit supersedes the stale `cardset-2026-06-03` on the
-   engine, removing the blocker. Run sequence: (a) run Mode A, verify
-   `curl https://app.gnomon.info/gubernis/featured-cards` returns the
-   fresh cardset; (b) re-add `scripts/patch_featured_cards.py` to this
-   repo and the workflow step to `deploy.yml`; (c) push and watch the
-   deploy. The script + workflow snippet are reproducible from the
-   `2492d07`→`7e6c278` commit pair in this repo's git history.
+1. **Automate "Areas of focus this period" cards — LIVE end-to-end 2026-06-13.**
+   Watch-counter numbers AND cards are now both auto-patched at
+   deploy. The full loop is closed: Areas of Focus page in `/app` at
+   `https://app.gnomon.info/app` (fifth tab, Basic auth interim) →
+   operator picks 3 from engine candidates (or clicks *⚡ Propose three
+   for me* for engine picks + brand-voice drafter summaries with
+   identifier-grounding checks) → edits inline (autosave) → submits →
+   `POST /gubernis/operator/cardsets/approve` writes a new approved
+   cardset → `GET /gubernis/featured-cards` serves it → next push to
+   `main` triggers `patch_featured_cards.py` in the deploy workflow
+   (restored 2026-06-13 by `0eba0ab` — revert of yesterday's revert,
+   safe now that the page produces fresh cardsets) → cards live on
+   gubernis.com homepage. First end-to-end run verified 2026-06-13:
+   `cardset-aof-2026-06-13-operator-a8bbb4` (3 cards, Steve-edited)
+   landed on the live homepage. **Spec:**
+   `hs-mvp/docs/gubernis/gubernis-areas-of-focus-page-spec.md`.
 
    **Wed 07:00 UTC approval email keeps the mobile path** —
    `[✓ Approve as-is]` still publishes via the signed-URL flow for
    travel/quick approves; the page owns the *refine before publish*
-   path.
+   path. Same publish target, two front doors.
 
    **Picker script** (`scripts/refresh_this_week_cards.py`) stays in
    the repo as a fallback for when the engine is unreachable, but the

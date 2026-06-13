@@ -167,29 +167,39 @@ search engines verified.
 
 **Follow-ups worth doing when you pick this up:**
 
-1. **Automate "Areas of focus this period" cards — designed, queued (2026-06-12).** Watch-counter
-   numbers are already auto-patched at deploy from the live engine.
-   Cards are not yet — but the design landed: an **Areas of Focus
-   page** in the `/app` operator console (fifth tab, role-gated to
-   staff+). Operator picks 3 from engine candidates, inline-edits the
-   drafter's summaries, submit → `POST /gubernis/operator/cardsets/approve`
-   → existing publish-on-approval mechanism (P0, 2026-06-03) takes
-   over. The Wed 07:00 UTC approval email keeps the one-tap mobile
-   approve path; the new page owns the *refine before publish* path.
+1. **Automate "Areas of focus this period" cards — v1 LIVE 2026-06-13.**
+   Watch-counter numbers were already auto-patched at deploy; cards
+   are now too, via the **Areas of Focus** page in the `/app` operator
+   console at `https://app.gnomon.info/app` (fifth tab, behind Basic
+   auth until Clerk-on-/app lands). Operator picks 3 from engine
+   candidates, edits summaries inline (autosave), submits →
+   `POST /gubernis/operator/cardsets/approve` writes the new approved
+   cardset → `GET /gubernis/featured-cards` serves it immediately.
+   Mode B (sales demo) on the same page renders a prospect's filtered
+   watch read-only against production. **Spec:**
+   `hs-mvp/docs/gubernis/gubernis-areas-of-focus-page-spec.md`. Build
+   commit: hs-mvp `7585b0f`.
 
-   **Spec:** `hs-mvp/docs/gubernis/gubernis-areas-of-focus-page-spec.md`
-   (full design — endpoints, traceability guard, autosave + conflict
-   handling, Mode B field set, acceptance criteria).
+   **Next step on this side** (gubernis-website): re-attempt the
+   `scripts/patch_featured_cards.py` deploy-side wiring (reverted
+   2026-06-12) once Steve runs Mode A end-to-end at least once — that
+   first submit supersedes the stale `cardset-2026-06-03` on the
+   engine, removing the blocker. Run sequence: (a) run Mode A, verify
+   `curl https://app.gnomon.info/gubernis/featured-cards` returns the
+   fresh cardset; (b) re-add `scripts/patch_featured_cards.py` to this
+   repo and the workflow step to `deploy.yml`; (c) push and watch the
+   deploy. The script + workflow snippet are reproducible from the
+   `2492d07`→`7e6c278` commit pair in this repo's git history.
 
-   **Preconditions** (must land first, in order):
-   1. Clerk production migration — Sunday 2026-06-14 target
-   2. Clerk-on-`/app` + roles model — next session after
-   3. Areas of Focus page itself — ~4h
+   **Wed 07:00 UTC approval email keeps the mobile path** —
+   `[✓ Approve as-is]` still publishes via the signed-URL flow for
+   travel/quick approves; the page owns the *refine before publish*
+   path.
 
-   **Until then:** keep using `scripts/refresh_this_week_cards.py`
-   weekly (see "Common edits → Refreshing the Areas of focus this
-   period cards" below), or tap the `[✓ Approve as-is]` button in the
-   Wed approval email when the engine draft is good enough as-is.
+   **Picker script** (`scripts/refresh_this_week_cards.py`) stays in
+   the repo as a fallback for when the engine is unreachable, but the
+   page is the primary workflow now. Worth retiring after a few weeks
+   of clean Areas of Focus runs.
 
 2. **Manual cards refresh in the meantime.** Until item 1 lands, run
    the picker weekly during the marketing push:

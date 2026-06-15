@@ -1,5 +1,23 @@
 # SESSION_START — gubernis-website
 
+## ⚠️ Workspace & Git rules — READ FIRST (all machines)
+
+**Where repos live — local, never cloud-synced:**
+- **Mac:** `~/Developer/…` — **NEVER** `~/Documents` or `~/Desktop` (iCloud-synced — corrupts `.git`).
+- **Windows:** a local path like `C:\dev\…` — **NEVER** under OneDrive (Documents/Desktop break Git the same way).
+- Tell-tale damage: empty "husk" folders, or ` 2` conflict-copy junk in `.git/objects`. If you see either, you're in a synced copy — stop and switch to the `~/Developer` clone.
+
+**Three devices:** travel MacBook · old Mac (desktop) · Windows PC. They share code **only through GitHub** — never a synced folder. **`origin/main` is the single source of truth.**
+
+**Every session:**
+- **Start:** `git pull` before touching anything — another machine may be ahead.
+- **After each chunk / before walking away:** commit + `git push`. Keep `origin/main` == local.
+- Stay on `main` unless there's a real reason to branch.
+
+**If a repo looks broken** (wrong location, ` 2` junk, empty folders): don't work in it. Everything's on GitHub — re-clone fresh and copy over local-only files like `.env.local`.
+
+---
+
 Quick orientation for picking up work on this repo. Read `README.md` and `CLAUDE.md` for the substance; this file is just for the *what now* question.
 
 ## Working across machines — pull first, push last (read before touching anything)

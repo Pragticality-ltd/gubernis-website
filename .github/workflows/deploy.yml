@@ -3,14 +3,16 @@ name: Deploy to IONOS
 on:
   push:
     branches: [main]
-  # Daily refresh so the Watch ledger (counter values + the "site snapshot"
-  # timestamp) stays current without a code push — the patch step below
-  # rewrites those at deploy time, so the site only moves when a deploy runs.
-  # 05:00 UTC sits after the engine's ~03:30–04:00 UTC daily cycle so the
-  # patched numbers are the day's fresh ones. GitHub only runs schedules on
-  # the default branch, so this is inert until merged to main.
+  # Hourly refresh so an operator-approved cardset reaches prod on its own,
+  # within ~1h of approval — no manual deploy trigger needed. Each run re-pulls
+  # the latest approved cardset (patch_featured_cards) + the live Watch-ledger
+  # numbers (patch_watch_counter) and redeploys; both patch steps are fail-soft,
+  # and the operator's console approval stays the ONLY gate on what content is
+  # served, so more frequent deploys don't change what can go live — only how
+  # soon. Idempotent between approvals (lftp mirror uploads only what changed).
+  # GitHub only runs schedules on the default branch, so this is inert off main.
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 # Mirror of gnomon-website/.github/workflows/deploy.yml — same pattern, same

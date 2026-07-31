@@ -1,7 +1,8 @@
 """Interactive refresh of the "Areas of focus this period" cards in index.html.
 
-Fetches recent trade-relevant ingests from the Railway-hosted Gubernis
-engine, prints a numbered candidate list, lets you pick three, prompts
+Fetches recent trade-relevant ingests from the Gubernis engine
+(Mola, app.gnomon.info), prints a numbered candidate list, lets you
+pick three, prompts
 for a custom summary line per pick, and rewrites the .featured-grid
 block in index.html in place.
 

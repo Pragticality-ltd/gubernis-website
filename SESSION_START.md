@@ -133,9 +133,9 @@ its last pull. To avoid clobbering work done elsewhere:
 
 ## ✅ Live — as of 2026-05-24
 
-**gubernis.com is live.** Engine running daily on Railway, marketing site
-deployed to IONOS, waitlist working end-to-end, legal floor in place,
-search engines verified.
+**gubernis.com is live.** Engine running daily on the Mola IONOS VPS
+(`app.gnomon.info`, migrated off Railway 2026-06-03), marketing site
+deployed to IONOS, legal floor in place, search engines verified.
 
 **What's wired up:**
 
@@ -246,19 +246,17 @@ search engines verified.
      `/.well-known/security.txt` per RFC 9116. The
      `security@gubernis.com` mailbox itself is still TBC.
 
-4. **Doc-25 Workstream A — Tier 2 wave (cross-repo coordination, deferred).**
-   Three files in this repo call the Railway-hosted Gnomon-engine hostname
-   `pragticality-production.up.railway.app` for Gubernis endpoints:
-   `scripts/refresh_this_week_cards.py` (calls `/gubernis/recent-changes`),
-   `.github/workflows/deploy.yml` (calls `/gubernis/watch-counter` at every
-   deploy), and `scripts/patch_watch_counter.py` (same). As of 2026-05-24,
-   Tier 1 of doc-25 landed (user-visible strings Gnomon-branded in the
-   backend) but the hostname is unchanged. The Tier 2 wave plans a custom
-   domain `app.gnomon.info` on the Railway service, after which all three
-   of this repo's callers must be updated together. See
-   `pragticality/docs/state_of_codebase.md` Section 13 "Doc-25 Workstream A
-   — Tier 2 wave" for the full coordinated sequence. Don't update the URLs
-   here in isolation.
+4. **Doc-25 Workstream A — Tier 2 wave — DONE 2026-06-03.** The engine
+   migrated off Railway (`pragticality-production.up.railway.app`) to the
+   Mola IONOS VPS at the custom domain `app.gnomon.info`. All of this
+   repo's engine callers were cut over together and now point at
+   `app.gnomon.info`: `.github/workflows/deploy.yml` (`/gubernis/watch-counter`
+   and `/gubernis/featured-cards` at every deploy), `scripts/patch_watch_counter.py`
+   (endpoint passed by the workflow), `scripts/patch_featured_cards.py`
+   (same), and `scripts/refresh_this_week_cards.py` (`DEFAULT_ENDPOINT` →
+   `/gubernis/recent-changes`). No Railway hostnames remain in this repo.
+   Background on the coordinated sequence: `pragticality/docs/state_of_codebase.md`
+   Section 13 "Doc-25 Workstream A — Tier 2 wave".
 
 ---
 
@@ -327,7 +325,7 @@ are intentionally stale; what's served is fresh on every push.
 
 If the deployed numbers look wrong, debug the endpoint, not the HTML:
 ```
-curl -s https://pragticality-production.up.railway.app/gubernis/watch-counter | python3 -m json.tool
+curl -s https://app.gnomon.info/gubernis/watch-counter | python3 -m json.tool
 ```
 
 ### Refreshing the "Areas of focus this period" cards

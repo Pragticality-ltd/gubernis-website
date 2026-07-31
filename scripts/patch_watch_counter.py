@@ -94,7 +94,7 @@ def patch_html(html: str, counter: dict) -> tuple[str, list[str]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Patch Watch ledger in deploy-time HTML.")
     parser.add_argument("--endpoint", required=True,
-                        help="URL of /gubernis/watch-counter on the Railway app")
+                        help="URL of /gubernis/watch-counter on the Mola engine (app.gnomon.info)")
     parser.add_argument("--html", required=True,
                         help="Path to the staged index.html to patch in place")
     parser.add_argument("--timeout", type=float, default=10.0)

@@ -31,27 +31,50 @@ gubernis-website/
 ├── SESSION_START.md    quick orientation + deploy workflow
 ├── CLAUDE.md           guidance for AI editing this repo
 ├── .gitignore
+├── .htaccess           forces HTTPS, canonicalises www → apex
 ├── styles.css          single shared stylesheet
 ├── robots.txt
 ├── sitemap.xml
 ├── favicon.svg         the § mark in oxblood
-└── index.html          single-page landing site
+├── index.html          single-page landing site
+├── privacy/            privacy notice
+├── terms/              subscription agreement
+├── samples/            Watch Forward sample dispatches
+├── scripts/            deploy-time patch + card-picker scripts
+├── .well-known/        RFC 9116 security.txt
+└── .github/workflows/  deploy.yml — lftp mirror to IONOS on push
 ```
 
 Multi-page expansion (e.g. `/about/`, `/pricing/`, `/how-it-works/`) is deferred to a later session. The single-page V1 is enough to validate willingness-to-pay via the LinkedIn survey planned in `pragticality-docs/gubernis/05_product_thesis.md` §6.
 
 ## How it deploys
 
-Same pattern as `pragticality-website` and `gnomon-website`: static files, hostable anywhere.
+**Live on IONOS, auto-deployed.** `gubernis.com` (registered 2026-05-12) runs
+on IONOS web hosting (same vendor as `pragticality.com`), with DNS managed in
+the IONOS control panel. The site went live end-to-end on 2026-05-24.
 
-The `gubernis.com` domain was registered on 2026-05-12 (initially as defensive insurance for the runner-up name in the product-naming session). DNS pointing and hosting setup are pending; deployment notes will land here once the host is chosen. Likely path: Fasthosts (same as `gnomon.info`) or IONOS (same as `pragticality.com`) — the deployment muscle for both is already in this house.
+Deployment is automated — no manual upload:
 
-When deploying:
+1. **Push to `main`** triggers the GitHub Actions workflow at
+   `.github/workflows/deploy.yml`, which stages public files into `dist/` and
+   `lftp`-mirrors them to IONOS over SFTP (port 22). The SFTP user is chrooted
+   to `/Gubernis/`. Same pattern as `gnomon-website`. Three repo secrets:
+   `IONOS_FTP_HOST`, `IONOS_FTP_USER`, `IONOS_FTP_PASS`.
+2. **Two values self-patch at deploy time** from the live engine's public
+   endpoints, so their values in `index.html` source are stale by design —
+   what's served is always fresh:
+   - the **Watch counter** (`scripts/patch_watch_counter.py`), and
+   - the **"Areas of focus" cards** (`scripts/patch_featured_cards.py`).
+3. An **hourly scheduled redeploy** keeps those numbers current without needing
+   a push.
 
-1. Ensure `index.html` references absolute paths (`/styles.css`, `/favicon.svg`) — they already do.
-2. Upload the whole repo contents to the document root of `gubernis.com`.
-3. Verify with `curl -I https://gubernis.com/sitemap.xml` and `curl -I https://gubernis.com/robots.txt`.
-4. Submit `sitemap.xml` to Google Search Console and Bing Webmaster Tools (same convention as `pragticality.com` per its `SESSION_LOG`).
+`.htaccess` forces HTTPS and canonicalises `www.gubernis.com` → apex (Let's
+Encrypt SSL at IONOS). Google Search Console is verified and `sitemap.xml`
+(covering `/privacy/`, `/terms/`, `/samples/`) is submitted; Bing Webmaster
+Tools is deferred.
+
+See `SESSION_START.md` ("What's wired up") for full hosting / DNS / SFTP
+details and the deploy-adjacent backlog.
 
 ## What this isn't
 

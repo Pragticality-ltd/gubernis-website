@@ -258,6 +258,20 @@ deployed to IONOS, legal floor in place, search engines verified.
    Background on the coordinated sequence: `pragticality/docs/state_of_codebase.md`
    Section 13 "Doc-25 Workstream A — Tier 2 wave".
 
+5. **Pivot idea logged — real-time premium alert tier (2026-08-02).** Today
+   the product is a *batch* cadence (weekly Friday dispatch + the homepage
+   Areas-of-Focus sample). The idea: a **pay-extra tier that fires an
+   immediate, retrieval-grounded (RAG) warning** when a change matching a
+   paying customer's watch profile lands — the value bought is *time-to-know*,
+   sharpening the kernel's "we're already telling you" from up-to-a-week to
+   immediate. Engine-side is the primary work; the **canonical backlog entry
+   lives in the Mola repo — `BACKLOG.md` → "◻ LATER — Real-time premium alert"**
+   (trigger via the existing `matching.py`, grounding ladder gates it, never
+   fire a fabricated alert). **Site-side consequences when it ships:** a new
+   pay-extra tier row in `#pricing` and CTA/copy that names immediacy — but
+   hold the credibility gate: don't sell it on the site until it demonstrably
+   ships. Positioning/pricing detail → `pragticality-docs`.
+
 ---
 
 ## Where this repo sits

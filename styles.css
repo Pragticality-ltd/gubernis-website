@@ -383,6 +383,14 @@ a { color: var(--oxblood); text-decoration: none; }
   color: var(--ink);
   letter-spacing: -0.01em;
 }
+.changed-section .section-dek {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px;
+  color: var(--slate);
+  max-width: 560px;
+  margin: 12px auto 0;
+  line-height: 1.55;
+}
 
 .featured-grid {
   display: grid;

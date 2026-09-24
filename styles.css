@@ -465,6 +465,27 @@ a { color: var(--oxblood); text-decoration: none; }
   border: 1px solid var(--oxblood-soft);
 }
 
+/* Divergence Watch lede — a cross-jurisdictional disparity on the same subject.
+   Blue, deliberately distinct from the oxblood § (Ambiguity Watch). The engine also
+   renders an inline blue background as a fallback, so the flag reads correctly even
+   before this stylesheet loads. */
+.card.divergence {
+  border-color: #b6d0f5;
+  background: #f2f7fe;
+}
+.card.divergence .divergence-flag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: #fff;
+  background: #1f6feb;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+  border: 1px solid #1f6feb;
+}
+
 /* ────────────────────────────────────────────
    Sources bar
    ──────────────────────────────────────────── */

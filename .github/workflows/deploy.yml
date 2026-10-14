@@ -14,6 +14,16 @@ on:
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
+  # Approve→live: the Mola operator console fires a repository_dispatch
+  # (event type 'cardset-approved') the moment a cardset is approved, so the
+  # just-approved set reaches prod in ~30s instead of waiting for the next
+  # scheduled run above (GitHub de-prioritises low-activity schedules — observed
+  # ~every 6h, not hourly, 2026-10-14). Same deploy job; patch_featured_cards
+  # still pulls whatever the console approved, so this changes only how SOON.
+  # Default-off at the source: inert until GUBERNIS_WEBSITE_DISPATCH_TOKEN is set
+  # on the engine box. Engine side: gubernis/operator/website_deploy.py.
+  repository_dispatch:
+    types: [cardset-approved]
 
 # Mirror of gnomon-website/.github/workflows/deploy.yml — same pattern, same
 # IONOS account, dedicated SFTP user (Gubernis = a2016447) chrooted to
